@@ -9,11 +9,12 @@
         echo "Failed To Connect !  " . mysqli_connect_errno();
     }
 
+	// DEFINING VARIBALES
+	$reg_username = ''; $reg_email = ''; $reg_mnumber = ''; $reg_pass1 = '';$reg_pass2 = '';$reg_date = ''; $reg_check = '';
+	$error_array = array();
+	
 	// REGISTER
 	if(isset($_POST['reg_submit'])){
-		// DEFINING VARIBALES
-		$reg_username = ''; $reg_email = ''; $reg_mnumber = ''; $reg_pass1 = '';$reg_pass2 = '';$reg_date = ''; $reg_check = '';
-		$error_array = array();
 
 		$reg_username = strip_tags($_POST['reg_username']); 
         $reg_username = str_replace(' ','',$reg_username);
@@ -58,18 +59,46 @@
 		if(empty($error_array)){
 			$reg_pass1 = md5($reg_pass1);
 			// echo $reg_pass1;
+
+			//Check Duplicate Entries
+			$check_username_query = mysqli_query($con,"SELECT username FROM users WHERE username='$reg_username'");
+			$poll_1 = 0;
+	
+			while(mysqli_num_rows($check_username_query) != 0 ){
+				$poll_1++;
+				$reg_username = $reg_username . "_" . $poll_1;
+				$check_username_query = mysqli_query($con,"SELECT username FROM users WHERE username='$reg_username'");
+				// echo $reg_username;
+			}		
+		
+			//Assigning random image profiles
+			$rand = rand(1,8);
+
+			if($rand == 1){
+				$profile_pic = "../../Public/Images/avatar-dog-saint-bernard-puppy-512.png";
+			} elseif($rand == 2){
+				$profile_pic = "../../Public/Images/avatars-dog-bernese-mountain-dog-512.png";
+			} elseif($rand == 3){
+				$profile_pic = "../../Public/Images/avatars-dogs-boxer-goofy-512.png";
+			} elseif($rand == 4){
+				$profile_pic = "../../Public/Images/avatars-dogs-newfoundland-bone-512.png";
+			} else{
+				$profile_pic = "../../Public/Images/avatars-pitbull-dogs-ears-512.png";
+			}
+
+			// INSERTING USER INFO IN DATABASE
+			$ins_query = mysqli_query($con , "INSERT INTO users VALUES ('$reg_username', '$reg_email', '$reg_mnumber', '$reg_pass1', '$reg_check', '', '$reg_date', '$profile_pic', '0', '0', 'no', ',')");
+			array_push($error_array,$reg_username ." You are registered successfully! you are good to log in ...");
+			//Clear session variables 
+			$_SESSION['reg_username'] = "";
+			$_SESSION['reg_email'] = "";
+			$_SESSION['reg_mnumber'] = "";
+			$_SESSION['reg_pass1'] = "";
+			$_SESSION['reg_pass2'] = "";			
 		}
 		
-		//Check Duplicate Entries
-		$check_username_query = mysqli_query($con,"SELECT username FROM users WHERE username='$reg_username'");
-		$poll_1 = 0;
 
-		while(mysqli_num_rows($check_username_query) != 0 ){
-			$poll_1++;
-			$reg_username = $reg_username . "_" . $poll_1;
-			$check_username_query = mysqli_query($con,"SELECT username FROM users WHERE username='$reg_username'");
-			echo $reg_username;
-		}
+
 
 	}
 ?>
