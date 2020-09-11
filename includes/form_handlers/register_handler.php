@@ -21,19 +21,26 @@
 		$_SESSION['reg_mnumber'] = $reg_mnumber; // Storing varibale to a session
 		
 		$reg_pass1 = strip_tags($_POST['reg_pass1']); 
-		$_SESSION['reg_pass1'] = $reg_pass1; // Storing varibale to a session
+		// $_SESSION['reg_pass1'] = $reg_pass1; // Storing varibale to a session
 
         $reg_pass2 = strip_tags($_POST['reg_pass2']); 
-		$_SESSION['reg_pass2'] = $reg_pass2; // Storing varibale to a session
+		// $_SESSION['reg_pass2'] = $reg_pass2; // Storing varibale to a session
 
 		$reg_date = date('Y-m-d');
 		
 
 		// ADDING constraints
+
+		//USERNAME length		
 		if(strlen($reg_username) > 15 || strlen($reg_username) < 3 ){
 			array_push($error_array,"Username must be between 3-13 characcters");
 		}
+		//username alphabets only 
+		if(!ctype_alpha($reg_username)){
+			array_push($error_array,"Please Enter Alphabets only in Username");
+		}
 
+		// password checks
 		if($reg_pass1 != $reg_pass2){
 			array_push($error_array,"Passwords do not match");
 		} else {
@@ -43,7 +50,16 @@
 		}
 
 		if(strlen($reg_pass1) > 16 || strlen($reg_pass1) < 7){
-			array_push($error_array,"password length must be between 7-16");
+			array_push($error_array,"Password length must be between 7-16");
+		}
+
+		// Mnumber length
+		if(strlen($reg_mnumber) <6 || strlen($reg_mnumber) >14 ){
+			array_push($error_array,"Enter Valid Mobile Number");
+		}
+
+		if(ctype_alpha($reg_mnumber)){
+			array_push($error_array,"Please Dont use Alphabets in number");
 		}
 
 		//Duplicate email
@@ -53,6 +69,7 @@
 		if(mysqli_num_rows($check_email_query) != 0){
 			array_push($error_array,"' " . $reg_email . " '". " This Email is already in use :(  " );
 		}
+
 
 
 		// ENCRYPT PASSWORD
