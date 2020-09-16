@@ -43,9 +43,10 @@
         <h2 class="sub-heading">FOR YOUR DOGGO</h2>
 
         <div class="button">
-            <a href="loginandregistration.php" class="btn">Login</a>
-            <a href="loginandregistration.php" class="btn">Register</a>
+            <a href="./Authentication/loginandregistration.php" class="btn">Login</a>
+            <a href="./Authentication/loginandregistration.php" class="btn">Register</a>
         </div>
+
 
 
     </div>
