@@ -8,21 +8,21 @@
 .hero{
 	height: 100%;
 	width: 100%;
-	background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5)),url(../Images/bruce2.jpg);
+	background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5)),url(bruce2.jpg);
 	background-position: center;
 	background-size: cover;
 	position: absolute;
 }
 .form-box{
 	width: 380px;
-	height: 590px;
+	height: 530px;
 	position: relative;
 	margin: 6% auto;
 	background-color: rgba(255, 255, 255, .4);
 	padding: 5px;
 	overflow: hidden;
 	border: 2px solid black;
-	/* font-weight: 600px; */
+	font-weight: 600px;
 }
 .button-box{
 	width: 220px;

@@ -32,6 +32,7 @@
                 <h2><i class="fas fa-paw"></i> Paw4Paw</h2>     
             </div>
 
+<<<<<<< HEAD
 			<!-- LOGIN FORM  -->
 			<form id="login" class="input-group" method="POST" action = "loginandregistration.php">
 				<input name='log_email' type="text" class="input-field" placeholder="email" value = "<?php
@@ -95,22 +96,37 @@
 				<?php
 					}
 				?>
+=======
+			<form id="login" class="input-group" method="POST">
+				<input name='log_username' type="text" class="input-field" placeholder="Username" required>
+				<input name='log_password' type="text" class="input-field" placeholder="Enter Password" required>
+				<input name='log_check' type="checkbox" class="check-box"><span>Remember Password </span>
+				<button name='log_submit' class="submit-btn" type="submit">Log in</button>
+
+				<a style = 'color : black; font-size : .8rem; font-weight : 300;' href="#">Forgot Password?</a>
+				
+
+ 
+			</form>
+			<form id="register" class="input-group" method="POST">
+				<input name='reg_username' type="text" class="input-field" placeholder="Username" required>
+				<input name='reg_email' type="email" class="input-field" placeholder="Email Id" required>
+				<input name='reg_mnumber' type="text" class="input-field" placeholder="Mobile Number" required>
+				<input name='reg_pass1' type="text" class="input-field" placeholder="Enter a Password" required>
+				<input name='reg_pass2' type="text" class="input-field" placeholder="Re-Enter Password" required>
+>>>>>>> parent of 1110d72... Valindating....
 
 				<input name='reg_check' type="checkbox" class="check-box">
 					<span style="color : black; font-size : .9rem; font-weight : 200;">I agree that the above information is true to my knowledge.
 					</span>
 				<button name='reg_submit' class="submit-btn" type="submit">Register</button>
-
-
-
 			</form>
-			
 		</div>
 		
 	</div>
 
 
-	<script type= 'text/javascript' src = '../../Public/Javascript/log_reg.js'></script>
+	<script type= 'text/javascript' src = './log_reg.js'></script>
 
 </body>
 </html>
